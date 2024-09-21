@@ -55,7 +55,8 @@ The mean flipper length is 200.9152 mm.
 ```{r problem1 - scatterplot, message = FALSE, warning = FALSE}
 ggplot(
   penguins,
-  aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + 
+  aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + 
+  geom_point() + 
   labs(
     title = "Bill length vs Flipper length",
     x = "bill length (mm)",
@@ -70,7 +71,7 @@ ggsave("scatterplot_flipper_vs_bill.png")
 
 ## Create data frame
 ```{r}
-set.seed(123)
+set.seed(1235)
 
 normal_sample = rnorm(10)
 

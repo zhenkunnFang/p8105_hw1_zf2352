@@ -408,7 +408,8 @@ millimeters.</p></li>
 <h2>Scatterplot</h2>
 <pre class="r"><code>ggplot(
   penguins,
-  aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + 
+  aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + 
+  geom_point() + 
   labs(
     title = &quot;Bill length vs Flipper length&quot;,
     x = &quot;bill length (mm)&quot;,
@@ -423,7 +424,7 @@ millimeters.</p></li>
 <h1>Problem 2</h1>
 <div id="create-data-frame" class="section level2">
 <h2>Create data frame</h2>
-<pre class="r"><code>set.seed(123)
+<pre class="r"><code>set.seed(1235)
 
 normal_sample = rnorm(10)
 
@@ -440,25 +441,25 @@ df &lt;- data.frame(Random_Sample = normal_sample,
 
 print(df)</code></pre>
 <pre><code>##    Random_Sample Greater_Than_Zero Character_Vector Factor_Vector
-## 1    -0.56047565             FALSE                y        Level1
-## 2    -0.23017749             FALSE                z        Level3
-## 3     1.55870831              TRUE                i        Level3
-## 4     0.07050839              TRUE                c        Level1
-## 5     0.12928774              TRUE                h        Level3
-## 6     1.71506499              TRUE                g        Level2
-## 7     0.46091621              TRUE                j        Level1
-## 8    -1.26506123             FALSE                x        Level3
-## 9    -0.68685285             FALSE                d        Level1
-## 10   -0.44566197             FALSE                n        Level1</code></pre>
+## 1    -0.69798794             FALSE                l        Level3
+## 2    -1.28485386             FALSE                m        Level2
+## 3     0.98995901              TRUE                d        Level1
+## 4     0.11177583              TRUE                b        Level3
+## 5     0.11420767              TRUE                o        Level1
+## 6     1.69819652              TRUE                n        Level3
+## 7     0.04784562              TRUE                g        Level2
+## 8     0.65486241              TRUE                i        Level2
+## 9     1.36528367              TRUE                e        Level1
+## 10    0.40257296              TRUE                h        Level1</code></pre>
 </div>
 <div id="calculate-mean" class="section level2">
 <h2>Calculate mean</h2>
 <pre class="r"><code>dbl_mean = mean(pull(df, Random_Sample)) %&gt;% 
   print()</code></pre>
-<pre><code>## [1] 0.07462564</code></pre>
+<pre><code>## [1] 0.3401862</code></pre>
 <pre class="r"><code>lgl_mean = mean(pull(df, Greater_Than_Zero)) %&gt;% 
   print()</code></pre>
-<pre><code>## [1] 0.5</code></pre>
+<pre><code>## [1] 0.8</code></pre>
 <pre class="r"><code>chr_mean = mean(pull(df, Character_Vector)) %&gt;% 
   print()</code></pre>
 <pre><code>## [1] NA</code></pre>
