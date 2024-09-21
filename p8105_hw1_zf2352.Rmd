@@ -1,0 +1,64 @@
+---
+title: "p8105_hw1_zf2352"
+author: "Zhenkun Fang"
+date: "2024-09-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+## Problem 1
+
+# Clean and look at the dataset
+```{r problem1 - clean and look at the dataset}
+penguins = janitor::clean_names(penguins)
+penguins
+nrow(penguins)
+ncol(penguins)
+```
+This data set contains various variables of penguins：
+- 'species': the specie of each penguin (Adelie, Chinstrap, Gentoo)
+- 'island': the island where each penguin comes from (Biscoe, Dream, Torgersen)
+- 'bill_length_mm': the bill length of each penguin in mm
+- 'bill_depth_mm': the bill depth of each penguin in mm
+- 'flipper_length_mm': the flipper length of each penguin in mm
+- 'body_mass_g': the body mass of each penguin in gram
+- 'sex': the biological sex of each penguin
+- 'year': the year of birth of each penguin (2007, 2008, 2009)
+
+There are 344 rows and 8 columns in this dataset.
+
+```{r problem1 - calculate mean flipper length}
+mean(penguins$flipper_length_mm, na.rm = TRUE)
+```
+
+The mean flipper length is 200.9152 mm.
+
+# Scatterplot
+```{r problem1 - scatterplot, message = FALSE, warning = FALSE}
+ggplot(
+  penguins,
+  aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + 
+  labs(
+    title = "Bill length vs Flipper length",
+    x = "bill length (mm)",
+    y = "flipper length (mm))",
+    color = "Penguin Species"
+  )
+
+ggsave("scatterplot_flipper_vs_bill.png")
+```
+
+## Problem 2
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
