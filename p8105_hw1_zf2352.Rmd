@@ -12,13 +12,13 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-```{r}
+```{r, include=FALSE}
 data("penguins", package = "palmerpenguins")
 ```
 
-## Problem 1
+# Problem 1
 
-# Clean and look at the dataset
+## Clean and look at the dataset
 ```{r problem1 - clean and look at the dataset}
 penguins = janitor::clean_names(penguins)
 penguins
@@ -26,14 +26,22 @@ nrow(penguins)
 ncol(penguins)
 ```
 This data set contains various variables of penguins：
-- 'species': the specie of each penguin (Adelie, Chinstrap, Gentoo)
-- 'island': the island where each penguin comes from (Biscoe, Dream, Torgersen)
-- 'bill_length_mm': the bill length of each penguin in mm
-- 'bill_depth_mm': the bill depth of each penguin in mm
-- 'flipper_length_mm': the flipper length of each penguin in mm
-- 'body_mass_g': the body mass of each penguin in gram
-- 'sex': the biological sex of each penguin
-- 'year': the year of birth of each penguin (2007, 2008, 2009)
+
+- 'species': the specie of each penguin (Adelie, Chinstrap, Gentoo).
+
+- 'island': the island where each penguin comes from (Biscoe, Dream, Torgersen).
+
+- 'bill_length_mm': the bill length of each penguin in millimeters.
+
+- 'bill_depth_mm': the bill depth of each penguin in millimeter.
+
+- 'flipper_length_mm': the flipper length of each penguin in millimeters.
+
+- 'body_mass_g': the body mass of each penguin in grams.
+
+- 'sex': the biological sex of each penguin.
+
+- 'year': the year of birth of each penguin (2007, 2008, 2009).
 
 There are 344 rows and 8 columns in this dataset.
 
@@ -43,7 +51,7 @@ mean(penguins$flipper_length_mm, na.rm = TRUE)
 
 The mean flipper length is 200.9152 mm.
 
-# Scatterplot
+## Scatterplot
 ```{r problem1 - scatterplot, message = FALSE, warning = FALSE}
 ggplot(
   penguins,
@@ -58,7 +66,59 @@ ggplot(
 ggsave("scatterplot_flipper_vs_bill.png")
 ```
 
-## Problem 2
+# Problem 2
 
+## Create data frame
+```{r}
+set.seed(123)
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+normal_sample = rnorm(10)
+
+logical_vector = normal_sample > 0
+
+character_vector = sample(letters, 10)
+
+factor_vector <- factor(sample(c("Level1", "Level2", "Level3"), 10, replace = TRUE))
+
+df <- data.frame(Random_Sample = normal_sample,
+                 Greater_Than_Zero = logical_vector,
+                 Character_Vector = character_vector,
+                 Factor_Vector = factor_vector)
+
+print(df)
+```
+## Calculate mean
+```{r, message = FALSE, warning = FALSE}
+dbl_mean = mean(pull(df, Random_Sample)) %>% 
+  print()
+  
+lgl_mean = mean(pull(df, Greater_Than_Zero)) %>% 
+  print()
+
+chr_mean = mean(pull(df, Character_Vector)) %>% 
+  print()
+
+fct_mean = mean(pull, Factor_Vector) %>% 
+  print()
+```
+R can calculate the mean of random sample and logical vector (double and logical vectors).
+
+```{r, eval = FALSE}
+lgl_mean1 = mean(as.numeric(pull(df, Greater_Than_Zero))) %>% 
+  print()
+
+chr_mean1 = mean(as.numeric(pull(df, Character_Vector))) %>% 
+  print()
+
+fct_mean1 = mean(as.numeric(pull(df, Factor_Vector))) %>% 
+  print()
+```
+R can calculate the mean of logical vector and factor vector. However, the mean of character vector cannot be calculated. 
+
+logical vector: When converting a logical vector to numeric, TRUE becomes 1 and FALSE becomes 0.
+
+character vector: When converting a character vector to numeric, R returns NA (missing values) because character data cannot be directly translated into numbers.
+
+factor vector: When converting a factor to numeric, the factor levels are converted into integers representing their internal codes.
+
+This helps explain what happens when I try to take the mean.
